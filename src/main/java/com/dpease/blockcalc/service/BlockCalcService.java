@@ -31,4 +31,15 @@ public class BlockCalcService {
         return processor.process(items, desiredOutput);
     }
 
+    public Iterable<Item> getAllItems() {
+        String query = "MATCH (n:Item) return n";
+
+        Iterable<Item> items = Neo4jSessionFactory
+                .getInstance()
+                .getNeo4jSession()
+                .query(Item.class, query, Collections.EMPTY_MAP);
+        
+        return items;
+    }
+
 }
